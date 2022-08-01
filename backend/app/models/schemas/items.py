@@ -1,3 +1,4 @@
+from ast import alias
 from typing import List, Optional
 
 from pydantic import BaseModel, Field
@@ -11,7 +12,7 @@ DEFAULT_ITEMS_OFFSET = 0
 
 class ItemForResponse(RWSchema, Item):
     tags: List[str] = Field(..., alias="tagList")
-
+    title: str = Field(...,alias="titleList")
 
 class ItemInResponse(RWSchema):
     item: ItemForResponse
@@ -38,6 +39,7 @@ class ListOfItemsInResponse(RWSchema):
 
 class ItemsFilters(BaseModel):
     tag: Optional[str] = None
+    title: Optional[str] = None
     seller: Optional[str] = None
     favorited: Optional[str] = None
     limit: int = Field(DEFAULT_ITEMS_LIMIT, ge=1)

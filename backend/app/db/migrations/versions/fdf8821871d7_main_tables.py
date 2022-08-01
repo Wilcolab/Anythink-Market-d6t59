@@ -145,6 +145,29 @@ def create_items_to_tags_table() -> None:
         "pk_items_to_tags", "items_to_tags", ["item_id", "tag"]
     )
 
+def create_titles_table() -> None:
+    op.create_table("titles", sa.Column("title", sa.Text, primary_key=True))
+
+
+def create_items_to_titles_table() -> None:
+    op.create_table(
+        "items_to_titles",
+        sa.Column(
+            "item_id",
+            sa.Integer,
+            sa.ForeignKey("items.id", ondelete="CASCADE"),
+            nullable=False,
+        ),
+        sa.Column(
+            "title",
+            sa.Text,
+            sa.ForeignKey("tags.tag", ondelete="CASCADE"),
+            nullable=False,
+        ),
+    )
+    op.create_primary_key(
+        "pk_items_to_titles", "items_to_titles", ["item_id", "title"]
+    )
 
 def create_favorites_table() -> None:
     op.create_table(

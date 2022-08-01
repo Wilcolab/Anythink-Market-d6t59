@@ -1,4 +1,5 @@
 from datetime import datetime
+from turtle import title
 from typing import Optional
 
 from pypika import Parameter as CommonParameter, Query, Table
@@ -60,6 +61,18 @@ class ItemsToTags(TypedTable):
     item_id: int
     tag: str
 
+class Titles(TypedTable):
+    __table__ = "titles"
+
+    title: str
+
+
+class ItemsToTitles(TypedTable):
+    __table__ = "items_to_titles"
+
+    item_id: int
+    title: str
+
 
 class Favorites(TypedTable):
     __table__ = "favorites"
@@ -71,5 +84,6 @@ class Favorites(TypedTable):
 users = Users()
 items = Items()
 tags = Tags()
+titles = Titles()
 items_to_tags = ItemsToTags()
 favorites = Favorites()

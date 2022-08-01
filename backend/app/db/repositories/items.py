@@ -11,6 +11,7 @@ from app.db.queries.tables import (
     items_to_tags,
     favorites,
     tags as tags_table,
+    titles as titles_table,
     users,
 )
 from app.db.repositories.base import BaseRepository
